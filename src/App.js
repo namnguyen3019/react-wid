@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Accordion from './components/Accordion';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const options = [
+	{ label: 'The Color Red', value: 'red' },
+	{ label: 'The Color Green', value: 'Green' },
+
+	{ label: 'The Color Blue', value: 'Blue' },
+];
+
+const App = () => {
+	return (
+		<div className="ui container">
+			<Accordion options={options} />{' '}
+		</div>
+	);
+};
 
 export default App;
