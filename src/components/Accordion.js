@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-const Accordion = ({ options }) => {
+const Accordion = ({ items }) => {
 	const [activeIndex, setActiveIndex] = useState('');
 
 	const onTitleClick = (index) => {
 		setActiveIndex(index);
 	};
-	const renderItems = options.map((item, index) => {
+	const renderItems = items.map((item, index) => {
 		const active = index === activeIndex ? 'active' : '';
 		return (
 			<React.Fragment key={item.label}>
@@ -15,10 +15,10 @@ const Accordion = ({ options }) => {
 					onClick={() => onTitleClick(index)}
 				>
 					<i className="dropdown icon"></i>
-					{item.label}
+					{item.title}
 				</div>
 				<div className={`content ${active}`}>
-					<p>{item.value}</p>
+					<p>{item.content}</p>
 				</div>
 			</React.Fragment>
 		);
