@@ -19,7 +19,6 @@ const Search = () => {
 					},
 				}
 			);
-			console.log(data.query.search);
 			if (term) {
 				setResults(data.query.search);
 			}
@@ -37,6 +36,29 @@ const Search = () => {
 			};
 		}
 	}, [term, results.length]);
+
+	const renderedResults = results.map((result) => {
+		return (
+			<div key={result.pageid} className="item">
+				<div className="right floated content">
+					<a
+						className="ui button"
+						href={`https://en.wikipedia.org?curid=${result.pageid}`}
+						target="_blank"
+					>
+						Go
+					</a>
+				</div>
+				<div className="content">
+					<div className="header">{result.title}</div>
+					{/* Becareful do use this code. XSS Attacks in React */}
+					<span
+						dangerouslySetInnerHTML={{ __html: result.snippet }}
+					></span>
+				</div>
+			</div>
+		);
+	});
 	return (
 		<div>
 			<form className="ui form">
@@ -47,6 +69,7 @@ const Search = () => {
 					onChange={(e) => setTerm(e.target.value)}
 				/>
 			</form>
+			<div className="ui celled list">{renderedResults}</div>
 		</div>
 	);
 };
